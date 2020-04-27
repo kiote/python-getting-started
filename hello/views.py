@@ -1,5 +1,6 @@
 import requests
 import logging
+import json
 
 from django.shortcuts import render
 from django.http import HttpResponse
@@ -17,7 +18,9 @@ def index(request):
 
 def message(request):
     message = request.body
+    d = json.loads(message)
     logger.error(message.decode("utf-8"))
+    logger.error(d['message']['text'])
     return HttpResponse('<pre>' + message.decode("utf-8") + '</pre>')
 
 def db(request):

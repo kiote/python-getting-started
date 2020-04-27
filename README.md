@@ -48,3 +48,7 @@ For more information about using Python on Heroku, see these Dev Center articles
 
 https://api.telegram.org/bot<key>/setWebHook?url=https://polar-plains-99906.herokuapp.com/message/
 https://api.telegram.org/bot<key>/setWebHook?url=http://03b91271.ngrok.io/message/
+
+## Save changes
+
+`git push my-own master`
