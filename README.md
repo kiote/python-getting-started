@@ -52,3 +52,9 @@ https://api.telegram.org/bot<key>/setWebHook?url=http://03b91271.ngrok.io/messag
 ## Save changes
 
 `git push my-own master`
+
+## Adding new migration
+
+`python3 manage.py makemigrations`
+
+`heroku run manage.py migrate`

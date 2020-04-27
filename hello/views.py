@@ -17,6 +17,9 @@ def index(request):
     telega_login = '<script async src="https://telegram.org/js/telegram-widget.js?8" data-telegram-login="GroundWorkerBot" data-size="large" data-auth-url="https://polar-plains-99906.herokuapp.com/" data-request-access="write"></script>'
     return HttpResponse('<pre>' + r.text + '</pre>' + telega_login)
 
+def reply(request):
+    last_message = "ho"
+
 def message(request):
     message = request.body
     d = json.loads(message)

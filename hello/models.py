@@ -9,3 +9,6 @@ class Message(models.Model):
     chat_id = models.CharField("chat_id", max_length=80, default="")
     message = models.TextField("message")
     raw_message = models.TextField("raw_message", default="")
+
+class Users(models.Model):
+    user = models.CharField("user", max_length=80)
