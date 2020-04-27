@@ -28,10 +28,11 @@ def send_message(request):
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
-            message =form.cleaned_data['message']
+            message = form.cleaned_data['message']
             full_url = send_message_url % (os.environ.get('TELEGRAM_KEY'), user_id, message)
             r = requests.get(full_url)
             print(r.text)
+            return http.HttpResponseRedirect('')
         else:
             print('Invalid form')
 
