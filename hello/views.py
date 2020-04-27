@@ -5,8 +5,8 @@ import json
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Greeting
 from .models import Message
+from .models import Users
 
 logger = logging.getLogger(__name__)
 
@@ -14,11 +14,17 @@ logger = logging.getLogger(__name__)
 def index(request):
     r = requests.get('http://httpbin.org/status/418')
     print(r.text)
-    telega_login = '<script async src="https://telegram.org/js/telegram-widget.js?8" data-telegram-login="GroundWorkerBot" data-size="large" data-auth-url="https://polar-plains-99906.herokuapp.com/" data-request-access="write"></script>'
+    telega_login = '<script async src="https://telegram.org/js/telegram-widget.js?8" data-telegram-login="GroundWorkerBot" data-size="large" data-auth-url="https://polar-plains-99906.herokuapp.com/login" data-request-access="write"></script>'
     return HttpResponse('<pre>' + r.text + '</pre>' + telega_login)
 
-def reply(request):
-    last_message = "ho"
+def login(request):
+    user_id = request.GET['id']
+    if exists(user_id):
+        pass
+    else:
+        user = Users(user=user_id)
+        user.save()
+    return HttpResponse('ok')
 
 def message(request):
     message = request.body
@@ -39,11 +45,5 @@ def message(request):
     logger.error(d['message']['text'])
     return HttpResponse('<pre>' + message.decode("utf-8") + '</pre>')
 
-def db(request):
-
-    greeting = Greeting()
-    greeting.save()
-
-    greetings = Greeting.objects.all()
-
-    return render(request, "db.html", {"greetings": greetings})
+def exists(user_id):
+    Users.objects.filter(user=user_id).count()
