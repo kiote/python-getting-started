@@ -32,7 +32,7 @@ def send_message(request):
             full_url = send_message_url % (os.environ.get('TELEGRAM_KEY'), user_id, message)
             r = requests.get(full_url)
             print(r.text)
-            return http.HttpResponseRedirect('')
+            return HttpResponseRedirect('')
         else:
             print('Invalid form')
 
