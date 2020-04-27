@@ -9,6 +9,8 @@ from django.http import HttpResponse
 from .models import Message
 from .models import Users
 
+from .forms import MessageForm
+
 logger = logging.getLogger(__name__)
 send_message_url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s'
 
@@ -21,10 +23,19 @@ def index(request):
 
 def send_message(request):
     user_id = request.COOKIES['Telegram']
-    full_url = send_message_url % (os.environ.get('TELEGRAM_KEY'), user_id, 'hi')
-    r = requests.get(full_url)
-    print(r.text)
-    return HttpResponse('<pre>' + r.text + '</pre>')
+    form = MessageForm()
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message =form.cleaned_data['message']
+            full_url = send_message_url % (os.environ.get('TELEGRAM_KEY'), user_id, message)
+            r = requests.get(full_url)
+            print(r.text)
+        else:
+            print('Invalid form')
+
+    return render(request, 'send_message.html', {'form': form})
 
 def login(request):
     user_id = request.GET['id']
