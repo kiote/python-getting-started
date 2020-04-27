@@ -9,6 +9,7 @@ from .models import Message
 from .models import Users
 
 logger = logging.getLogger(__name__)
+send_message_url = 'https://api.telegram.org/bot%s/sendMessage?chat_id=%s&text=%s'
 
 # Create your views here.
 def index(request):
@@ -16,6 +17,13 @@ def index(request):
     print(r.text)
     telega_login = '<script async src="https://telegram.org/js/telegram-widget.js?8" data-telegram-login="GroundWorkerBot" data-size="large" data-auth-url="https://polar-plains-99906.herokuapp.com/login" data-request-access="write"></script>'
     return HttpResponse('<pre>' + r.text + '</pre>' + telega_login)
+
+def send_message(request):
+    user_id = request.COOKIES['Telegram']
+    full_url = send_message_url % (os.environ.get('TELEGRAM_KEY'), user_id, 'hi')
+    r = requests.get(full_url)
+    print(r.text)
+    return HttpResponse('<pre>' + r.text + '</pre>')
 
 def login(request):
     user_id = request.GET['id']
@@ -46,6 +54,8 @@ def message(request):
     logger.error(message.decode("utf-8"))
     logger.error(d['message']['text'])
     return HttpResponse('<pre>' + message.decode("utf-8") + '</pre>')
+
+## non-public stuff
 
 def exists(user_id):
     Users.objects.filter(user=user_id).count()
