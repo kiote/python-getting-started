@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Greeting
+from .models import Message
 
 logger = logging.getLogger(__name__)
 
@@ -19,6 +20,14 @@ def index(request):
 def message(request):
     message = request.body
     d = json.loads(message)
+
+    message_text = d['message']['text']
+    message_from = d['message']['from']
+    message_raw = message
+
+    db_message = Message(user=message_from, message=message_text)
+    db_message.save()
+
     logger.error(message.decode("utf-8"))
     logger.error(d['message']['text'])
     return HttpResponse('<pre>' + message.decode("utf-8") + '</pre>')
