@@ -1,9 +1,12 @@
 import requests
+import logging
 
 from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Greeting
+
+logger = logging.getLogger(__name__)
 
 # Create your views here.
 def index(request):
@@ -14,6 +17,7 @@ def index(request):
 
 def message(request):
     message = request.body
+    logger.error(message.decode("utf-8"))
     return HttpResponse('<pre>' + message.decode("utf-8") + '</pre>')
 
 def db(request):

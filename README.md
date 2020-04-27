@@ -43,3 +43,8 @@ or
 For more information about using Python on Heroku, see these Dev Center articles:
 
 - [Python on Heroku](https://devcenter.heroku.com/categories/python)
+
+## Ngrok
+
+https://api.telegram.org/bot<key>/setWebHook?url=https://polar-plains-99906.herokuapp.com/message/
+https://api.telegram.org/bot<key>/setWebHook?url=http://03b91271.ngrok.io/message/
