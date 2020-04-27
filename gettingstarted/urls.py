@@ -19,5 +19,5 @@ urlpatterns = [
     path("message/", hello.views.message, name="message"),
     path("login/", hello.views.login, name="login"),
     path("admin/", admin.site.urls),
-    path("send/", hello.views.send_message),
+    path("send/", hello.views.send_message, name="send")
 ]
