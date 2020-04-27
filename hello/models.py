@@ -12,3 +12,4 @@ class Message(models.Model):
 
 class Users(models.Model):
     user = models.CharField("user", max_length=80)
+
