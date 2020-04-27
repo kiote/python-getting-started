@@ -20,4 +20,5 @@ urlpatterns = [
     path("login/", hello.views.login, name="login"),
     path("admin/", admin.site.urls),
     path("send/", hello.views.send_message, name="send")
+    path("logout/", hello.views.logout, name="logout")
 ]

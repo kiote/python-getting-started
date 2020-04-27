@@ -45,6 +45,9 @@ def login(request):
         response.set_cookie('Telegram', str(user_id))
     return response
 
+def logout(request):
+    pass
+
 # receiving messages from telegram here
 def message(request):
     message = request.body
