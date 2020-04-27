@@ -22,7 +22,7 @@ def message(request):
     d = json.loads(message)
 
     message_text = d['message']['text']
-    message_from = d['message']['from']
+    message_from = d['message']['from']['id']
     message_raw = message
 
     db_message = Message(user=message_from, message=message_text)
