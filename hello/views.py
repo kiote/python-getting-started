@@ -21,7 +21,7 @@ def login(request):
     user_id = request.GET['id']
     response = HttpResponse('ok')
     if exists(user_id):
-        response.set_cookie('Telegram', 'LoggedIn', str(user_id))
+        response.set_cookie('Telegram', str(user_id))
     else:
         user = Users(user=user_id)
         user.save()
