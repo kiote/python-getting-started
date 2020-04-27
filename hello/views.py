@@ -4,7 +4,7 @@ import os
 import requests
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 
 from .models import Message
 from .models import Users
