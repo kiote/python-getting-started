@@ -25,7 +25,7 @@ def message(request):
     message_from = d['message']['from']['id']
     message_raw = message
 
-    db_message = Message(user=message_from, message=message_text)
+    db_message = Message(user=message_from, message=message_text, raw_message=message_raw)
     db_message.save()
 
     logger.error(message.decode("utf-8"))

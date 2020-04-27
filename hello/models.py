@@ -7,3 +7,4 @@ class Greeting(models.Model):
 class Message(models.Model):
     user = models.CharField("user", max_length=80)
     message = models.TextField("message")
+    raw_message = models.TextField("raw_message")
