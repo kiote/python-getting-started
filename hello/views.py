@@ -50,13 +50,12 @@ def logout(request):
 
 # receiving messages from telegram here
 def message(request):
-    message = request.body
-    d = json.loads(message)
+    message_raw = request.body
+    d = json.loads(message_raw)
 
     message_text = d['message']['text']
     message_from = d['message']['from']['id']
     message_chat_id = d['message']['chat']['id']
-    message_raw = message
 
     db_message = Message(user=message_from,
                          message=message_text,
@@ -64,9 +63,9 @@ def message(request):
                          chat_id=message_chat_id)
     db_message.save()
 
-    logger.error(message.decode("utf-8"))
+    logger.error(message_raw.decode("utf-8"))
     logger.error(d['message']['text'])
-    return HttpResponse('<pre>' + message.decode("utf-8") + '</pre>')
+    return HttpResponse('<pre>' + message_raw.decode("utf-8") + '</pre>')
 
 ## non-public stuff
 
