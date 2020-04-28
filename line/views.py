@@ -8,6 +8,8 @@ from django.http import HttpResponse
 
 from .models import Message
 
+logger = logging.getLogger(__name__)
+
 def message_callback(request):
     raw_message = request.body
     # d = json.loads(raw_message)
