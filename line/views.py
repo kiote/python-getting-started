@@ -28,7 +28,7 @@ def message_callback(request):
 
     return HttpResponse('ok')
 
-def message_repy(request):
+def message_reply(request):
     if exists():
         last_message = get_last_message()
         headers = {'content-type': 'application/json',
