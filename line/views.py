@@ -46,7 +46,7 @@ def message_reply(request):
 # private methods
 
 def exists():
-    Message.objects.count()
+    return Message.objects.count()
 
 def get_last_message():
-    Message.objects.all().order_by('-id')[:1][0]
+    return Message.objects.all().order_by('-id')[:1][0]

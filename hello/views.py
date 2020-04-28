@@ -70,4 +70,4 @@ def message(request):
 ## non-public stuff
 
 def exists(user_id):
-    Users.objects.filter(user=user_id).count()
+    return Users.objects.filter(user=user_id).count()
