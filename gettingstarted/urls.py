@@ -23,5 +23,6 @@ urlpatterns = [
     path("send/", hello.views.send_message, name="send"),
     path("logout/", hello.views.logout, name="logout"),
 
-    path("line-message-callback/", line.views.message_callback, name="line_message_callback")
+    path("line-message-callback/", line.views.message_callback, name="line_message_callback"),
+    path("line-message-reply/", line.views.message_reply, name="line_message_reply")
 ]
