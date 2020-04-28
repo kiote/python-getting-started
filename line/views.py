@@ -16,15 +16,15 @@ def message_callback(request):
     for event in d['events']:
         if event['message']['type'] == 'text':
             logger.error(event)
-    # message_user = d['source']['userId']
-    # message_reply_token = d['replyToken']
-    # message_text = d['message']['text']
+            message_user = event['source']['userId']
+            message_reply_token = event['replyToken']
+            message_text = event['message']['text']
 
-    # db_message = Message(user=message_user,
-    #                      message=message_text,
-    #                      raw_message=raw_message,
-    #                      reply_token=message_reply_token)
-    # db_message.save()
+            db_message = Message(user=message_user,
+                                 message=message_text,
+                                 raw_message=raw_message,
+                                 reply_token=message_reply_token)
+            db_message.save()
 
     logger.error(raw_message.decode("utf-8"))
 
