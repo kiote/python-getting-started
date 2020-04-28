@@ -12,7 +12,9 @@ logger = logging.getLogger(__name__)
 
 def message_callback(request):
     raw_message = request.body
-    # d = json.loads(raw_message)
+    d = json.loads(raw_message)
+    for event in d['events']:
+        logger.error(event)
     # message_user = d['source']['userId']
     # message_reply_token = d['replyToken']
     # message_text = d['message']['text']
