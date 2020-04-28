@@ -26,6 +26,4 @@ def message_callback(request):
                                  reply_token=message_reply_token)
             db_message.save()
 
-    logger.error(raw_message.decode("utf-8"))
-
     return HttpResponse('ok')
