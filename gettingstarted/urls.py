@@ -18,7 +18,6 @@ import viber.views
 
 urlpatterns = [
     path("", hello.views.index, name="index"),
-    path("message/", hello.views.message, name="message"),
     path("login/", hello.views.login, name="login"),
     path("admin/", admin.site.urls),
     path("send/", hello.views.send_message, name="send"),
@@ -27,5 +26,9 @@ urlpatterns = [
     path("line-message-callback/", line.views.message_callback, name="line_message_callback"),
     path("line-message-reply/", line.views.message_reply, name="line_message_reply"),
 
-    path("viber-callback/", viber.views.callback_url, name="viber_callback_url")
+    path("viber-callback/", viber.views.callback_url, name="viber_callback_url"),
+
+    # seems like routes are somehow dpendent, so this one goes last
+    # to not mess up with the rest
+    path("message/", hello.views.message, name="message")
 ]
