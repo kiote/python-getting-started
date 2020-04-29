@@ -6,6 +6,7 @@ admin.autodiscover()
 
 import hello.views
 import line.views
+import viber.views
 
 # To add a new path, first import the app:
 # import blog
@@ -24,5 +25,7 @@ urlpatterns = [
     path("logout/", hello.views.logout, name="logout"),
 
     path("line-message-callback/", line.views.message_callback, name="line_message_callback"),
-    path("line-message-reply/", line.views.message_reply, name="line_message_reply")
+    path("line-message-reply/", line.views.message_reply, name="line_message_reply"),
+
+    path("viber-callback/", viber.views.callback_url, name="viber_callback_url"),
 ]
