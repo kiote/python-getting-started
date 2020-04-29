@@ -6,8 +6,6 @@ import requests
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Message
-
 logger = logging.getLogger(__name__)
 viber_api_url = 'https://chatapi.viber.com/pa/'
 

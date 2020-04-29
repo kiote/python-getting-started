@@ -27,5 +27,5 @@ urlpatterns = [
     path("line-message-callback/", line.views.message_callback, name="line_message_callback"),
     path("line-message-reply/", line.views.message_reply, name="line_message_reply"),
 
-    path("viber-callback/", viber.views.callback_url, name="viber_callback_url"),
+    path("viber-callback/", viber.views.callback_url, name="viber_callback_url")
 ]

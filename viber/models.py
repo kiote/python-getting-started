@@ -1,4 +1,4 @@
 from django.db import models
 
 class Message(models.Model):
-    pass
+    created = models.DateTimeField("created", auto_now_add=True)
