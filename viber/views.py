@@ -16,11 +16,12 @@ from django.shortcuts import render
 def callback_url(request):
     raw_message = request.body
     logger.error(raw_message)
-    if raw_message['event'] == 'message':
-        message_text = raw_message['message']['text']
-        message_token = raw_message['message_token']
-        sender_id = raw_message['sender']['id']
-        created = raw_message['timestamp']
+    d = json.loads(raw_message)
+    if d['event'] == 'message':
+        message_text = d['message']['text']
+        message_token = d['message_token']
+        sender_id = d['sender']['id']
+        created = d['timestamp']
         db_message = Message(created=created,
                              sender_id=sender_id,
                              token=message_token,
