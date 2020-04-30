@@ -53,8 +53,12 @@ def message(request):
     message_raw = request.body
     d = json.loads(message_raw)
     logger.error(message_raw.decode("utf-8"))
-    if 'text' in d['message']:
-        # this is telegram message
+    if 'event' in d:
+        # viber message
+        if 'text' in d['message']:
+            logger.error('viber message received')
+    elif 'text' in d['message']:
+        # telegram message
         message_text = d['message']['text']
         message_from = d['message']['from']['id']
         message_chat_id = d['message']['chat']['id']
@@ -64,9 +68,6 @@ def message(request):
                              chat_id=message_chat_id)
         db_message.save()
         logger.error(d['message']['text'])
-    else:
-        # viber sends here as well for some reason
-        pass
     return HttpResponse('<pre>' + message_raw.decode("utf-8") + '</pre>')
 
 ## non-public stuff
