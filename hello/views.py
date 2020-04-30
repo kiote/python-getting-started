@@ -51,15 +51,9 @@ def logout(request):
 # receiving messages from telegram here
 def message(request):
     message_raw = request.body
-    d = json.load(message_raw)
+    d = json.loads(message_raw)
     logger.error(message_raw.decode("utf-8"))
-    if "event" in d:
-        # viber message
-        logger.error('viber event received')
-        if 'text' in d['message']:
-            logger.error('viber message received')
-    elif 'text' in d['message']:
-        # telegram message
+    if 'text' in d['message']:
         message_text = d['message']['text']
         message_from = d['message']['from']['id']
         message_chat_id = d['message']['chat']['id']
