@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('viber', '0003_auto_20200430_0740'),
+        ('viber', '0002_auto_20200430_0727'),
     ]
 
     operations = [
