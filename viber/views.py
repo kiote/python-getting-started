@@ -22,8 +22,7 @@ def callback_url(request):
         message_token = d['message_token']
         sender_id = d['sender']['id']
         created = d['timestamp']
-        db_message = Message(created=created,
-                             sender_id=sender_id,
+        db_message = Message(sender_id=sender_id,
                              token=message_token,
                              raw_message=raw_message,
                              text=message_text,
