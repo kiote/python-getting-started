@@ -20,7 +20,6 @@ urlpatterns = [
     path("", hello.views.index, name="index"),
     path("login/", hello.views.login, name="login"),
     path("admin/", admin.site.urls),
-    path("send/", hello.views.send_message, name="send"),
     path("logout/", hello.views.logout, name="logout"),
 
     path("line-message-callback/", line.views.message_callback, name="line_message_callback"),
@@ -31,5 +30,6 @@ urlpatterns = [
 
     # seems like routes are somehow dpendent, so this one goes last
     # to not mess up with the rest
+    path("send/", hello.views.send_message, name="send"),
     path("message/", hello.views.message, name="message")
 ]
