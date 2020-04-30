@@ -53,7 +53,7 @@ def message(request):
     message_raw = request.body
     d = json.loads(message_raw)
     logger.error(message_raw.decode("utf-8"))
-    if 'event' in d:
+    if "event" in d:
         # viber message
         logger.error('viber event received')
         if 'text' in d['message']:
