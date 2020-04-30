@@ -20,7 +20,6 @@ def index(request):
 def send_message(request):
     user_id = request.COOKIES['Telegram']
     form = MessageForm()
-
     if request.method == 'POST':
         form = MessageForm(request.POST)
         if form.is_valid():
@@ -31,7 +30,6 @@ def send_message(request):
             return HttpResponseRedirect('')
         else:
             print('Invalid form')
-
     return render(request, 'send_message.html', {'form': form})
 
 def login(request):

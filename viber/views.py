@@ -25,7 +25,31 @@ def callback_url(request):
         db_message = Message(sender_id=sender_id,
                              token=message_token,
                              raw_message=raw_message,
-                             text=message_text,
-                            )
+                             text=message_text)
         db_message.save()
     return HttpResponse('ok')
+
+def send_message(request):
+    path = 'send_message'
+    message_type = 'text'
+    sender_name = 'MyBot'
+    form = MessageForm()
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.cleaned_data['message']
+            receiver = form.cleaned_data['user_id']
+            full_url = viber_api_url + path
+            headers = {'X-Viber-Auth-Token': os.environ.get('VIBER_ACCESS_TOKEN')}
+            payload = {'receiver': receiver,
+                       'type': message_type,
+                       'sender_name': sender_name,
+                       'text': message}
+            r = requests.post(full_url, data=json.dumps(payload), headers=headers)
+            print(r.text)
+            return HttpResponseRedirect('')
+        else:
+            print('Invalid form')
+    return render(request, 'send_message.html', {'form': form})
+
+

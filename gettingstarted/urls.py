@@ -27,6 +27,7 @@ urlpatterns = [
     path("line-message-reply/", line.views.message_reply, name="line_message_reply"),
 
     path("viber-callback/", viber.views.callback_url, name="viber_callback_url"),
+    path("viber-send/", viber.views.send_message, name="viber_send"),
 
     # seems like routes are somehow dpendent, so this one goes last
     # to not mess up with the rest
