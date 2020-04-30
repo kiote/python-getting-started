@@ -63,10 +63,10 @@ def message(request):
                              raw_message=message_raw,
                              chat_id=message_chat_id)
         db_message.save()
+        logger.error(d['message']['text'])
     else:
         # viber sends here as well for some reason
         pass
-    logger.error(d['message']['text'])
     return HttpResponse('<pre>' + message_raw.decode("utf-8") + '</pre>')
 
 ## non-public stuff
