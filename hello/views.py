@@ -51,7 +51,7 @@ def logout(request):
 # receiving messages from telegram here
 def message(request):
     message_raw = request.body
-    d = json.loads(message_raw)
+    d = json.load(message_raw)
     logger.error(message_raw.decode("utf-8"))
     if "event" in d:
         # viber message
