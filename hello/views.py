@@ -53,14 +53,19 @@ def message(request):
     message_raw = request.body
     d = json.loads(message_raw)
     logger.error(message_raw.decode("utf-8"))
-    message_text = d['message']['text']
-    message_from = d['message']['from']['id']
-    message_chat_id = d['message']['chat']['id']
-    db_message = Message(user=message_from,
-                         message=message_text,
-                         raw_message=message_raw,
-                         chat_id=message_chat_id)
-    db_message.save()
+    if 'text' in d['message']:
+        # this is telegram message
+        message_text = d['message']['text']
+        message_from = d['message']['from']['id']
+        message_chat_id = d['message']['chat']['id']
+        db_message = Message(user=message_from,
+                             message=message_text,
+                             raw_message=message_raw,
+                             chat_id=message_chat_id)
+        db_message.save()
+    else:
+        # viber sends here as well for some reason
+        pass
     logger.error(d['message']['text'])
     return HttpResponse('<pre>' + message_raw.decode("utf-8") + '</pre>')
 
