@@ -7,7 +7,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Message
-from .forms import MessageForm
+from viber.forms import MessageForm
 
 logger = logging.getLogger(__name__)
 viber_api_url = 'https://chatapi.viber.com/pa/'
@@ -51,6 +51,6 @@ def send_message(request):
             return HttpResponseRedirect('')
         else:
             print('Invalid form')
-    return render(request, 'send_message.html', {'form': form})
+    return render(request, 'send_viber_message.html', {'form': form})
 
 
