@@ -55,6 +55,7 @@ def message(request):
     logger.error(message_raw.decode("utf-8"))
     if 'event' in d:
         # viber message
+        logger.error('viber event received')
         if 'text' in d['message']:
             logger.error('viber message received')
     elif 'text' in d['message']:
